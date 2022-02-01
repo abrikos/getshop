@@ -1,3 +1,5 @@
 export default function Phone(){
-    return <div></div>
+    return <div>
+        Phone
+    </div>
 }
