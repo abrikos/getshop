@@ -1,14 +1,117 @@
 $width: 1280px
 $height: 720px
-main
-  width: $width
-  height: $height
-  border: 1px solid red
-  margin: auto
-  .video-overlay
+$blue: #86D3F4
+body
+  font-size: 16px
+  font-style: normal
+  font-weight: 500
+  line-height: 19px
+  letter-spacing: 0
+  text-align: center
+  height: 100vh
+  display: flex
+  justify-content: center
+  align-items: center
+  main
     width: $width
     height: $height
-    z-index: 10000
-    position: absolute
-    top: 0
+    margin: auto
+    button
+      border-radius: 0
+      border: none
+
+    .bg-blue
+      background: $blue
+    .second-screen
+      display: flex
+      height: 100%
+      width: $width
+      .left
+        width: 380px
+        padding: 20px
+        .phone-accept-container
+          height: 100%
+          display: flex
+          align-items: center
+        .phone-input-container
+          .accept
+            text-transform: uppercase
+            border: 1px solid black
+            padding: 20px
+            &.active
+              cursor: pointer
+              background: black
+              color: white
+          .agreement
+            display: flex
+            justify-content: space-around
+            div
+              margin: 10px
+              display: flex
+              align-items: center
+              .agree-text
+                text-align: left
+              .check-box
+                cursor: pointer
+                display: flex
+                justify-content: center
+                width: 40px
+                height: 40px
+                border: 1px solid black
+          .phone-input
+            font-size: 32px
+            margin: 20px 0
+          .digits
+            display: grid
+            column-gap: 3px
+            row-gap: 3px
+            grid-template-columns: [first] auto [line2] auto [line3] auto [end]
+            grid-template-rows: 40px 40px 40px 40px
+            div
+              cursor: pointer
+              border: 2px solid black
+              display: flex
+              align-items: center
+              justify-content: center
+            div:nth-child(10)
+              grid-column: span 2
+            div:hover
+              background: black
+              color: white
+      .right
+        width: 900px
+        background-size: cover
+        background: url(/static/right_bg.png) center
+        text-align: right
+        padding: 30px
+        button
+          cursor: pointer
+          padding: 10px
+
+
+
+    .first-screen
+      .video-overlay
+        width: $width
+        height: $height
+        z-index: 10000
+        position: absolute
+        top: 0
+        display: flex
+        justify-content: right
+        align-items: center
+        .banner
+          display: flex
+          flex-direction: column
+          align-items: center
+          justify-content: space-between
+          height: 357px
+          width: 251px
+          border-radius: 0
+          padding: 30px 10px 10px 10px
+          button
+            background: black
+            color: $blue
+            height: 52px
+            width: 156px
 
