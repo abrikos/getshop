@@ -12,6 +12,7 @@ export default function PhoneInput() {
     // @ts-ignore
     const upHandler = ({key}) => {
         if (key.match(/[0-9]/)) addToPhone(key);
+        if(key==='Backspace') removeFromPhone();
     };
     useEffect(() => {
         window.addEventListener("keyup", upHandler);
@@ -38,7 +39,7 @@ export default function PhoneInput() {
     }
 
     function removeFromPhone() {
-        setPhone(phone.slice(0, -1));
+        setPhone(currentState => currentState.slice(0, -1));
     }
 
     return <div className="phone-input-container">
