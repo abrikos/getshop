@@ -3,8 +3,9 @@ import {configureStore, createSlice} from '@reduxjs/toolkit'
 const slice = createSlice({
     name: 'screens',
     initialState: {
-        screen: 'video',
+        screen: 'first',
         startTime: 0,
+        phone: ''
     },
     reducers: {
         setScreen: (state, action) => {
@@ -12,10 +13,13 @@ const slice = createSlice({
         },
         setStartTime: (state, action) => {
             state.startTime = action.payload
+        },
+        setPhoneNumber: (state, action) => {
+            state.phone = action.payload
         }
     },
 })
-export const {setScreen, setStartTime} = slice.actions
+export const {setScreen, setStartTime, setPhoneNumber} = slice.actions
 
 const store = configureStore(slice)
 export default store;
