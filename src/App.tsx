@@ -1,8 +1,7 @@
 import React from 'react';
 import './app.sass';
-import Video from "./screens/Video";
-import Phone from "./screens/Phone";
-import Final from "./screens/Final";
+import FirstScreen from "./components/FirstScreen";
+import SecondScreen from "./components/SecondScreen";
 import {useSelector} from 'react-redux';
 import {RootState} from "./store";
 
@@ -12,9 +11,8 @@ function App() {
     })
     return (
         <main>
-            {screen === 'video' && <Video/>}
-            {screen === 'phone' && <Phone/>}
-            {screen === 'final' && <Final/>}
+            {screen === 'first' && <FirstScreen/>}
+            {screen === 'second' && <SecondScreen/>}
         </main>
     );
 }
