@@ -12,7 +12,6 @@ function App() {
     })
     return (
         <main>
-            {screen}
             {screen === 'video' && <Video/>}
             {screen === 'phone' && <Phone/>}
             {screen === 'final' && <Final/>}
