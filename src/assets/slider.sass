@@ -1,0 +1,81 @@
+.slider-container
+  position: relative
+  overflow: hidden
+  width: 100%
+  height: 100vh
+
+
+  .slider
+    position: absolute
+    top: 0
+    left: 0
+    width: 500%
+    height: 100%
+    animation: animate 10s linear infinite
+
+
+    .slide
+      position: relative
+      width: 20%
+      height: 100%
+      float: left
+
+      .caption
+        position: absolute
+        bottom: 60px
+        left: 60px
+        right: 60px
+        padding: 30px
+        background: rgba(0, 0, 0, .5)
+        box-sizing: border-box
+        transition: 0.5s
+
+
+        h2
+          margin: 0 0 20px
+          padding: 0
+          color: #fff
+          font-size: 48px
+          transition: 0.5s
+
+
+        p
+          margin: 0
+          padding: 0
+          color: #fff
+          font-size: 20px
+          transition: 0.5s
+
+
+      &.slide1
+        background-size: cover
+        background: url(../static/bg1.png) no-repeat center
+
+      &.slide2
+        background-size: cover
+        background: url(../static/bg2.png) no-repeat center
+      &.slide3
+        background-size: cover
+        background: url(../static/bg3.png) no-repeat center
+
+
+@keyframes animate
+  0%
+    left: 0
+  20%
+    left: 0
+  25%
+    left: -100%
+  45%
+    left: -100%
+  50%
+    left: -200%
+  70%
+    left: -200%
+  75%
+    left: -300%
+  95%
+    left: -300%
+  100%
+    left: -400%
+

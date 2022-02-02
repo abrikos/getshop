@@ -1,5 +1,6 @@
 import React from 'react';
-import './app.sass';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import './assets/app.sass';
 import FirstScreen from "./components/FirstScreen";
 import SecondScreen from "./components/SecondScreen";
 import {useSelector} from 'react-redux';

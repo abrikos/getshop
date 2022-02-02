@@ -89,12 +89,15 @@ body
               color: white
       .right
         width: 900px
-        background-size: cover
-        background: url(/static/right_bg.png) center
-        text-align: right
-        button
-          cursor: pointer
-          padding: 10px
+        .slider
+          img
+            height: 720px
+        .overlay
+          position: absolute
+          top: 0
+          .navigation
+            top: 20px
+            position: relative
       .wrapper
         margin: 40px
 
@@ -109,6 +112,7 @@ body
         justify-content: right
         align-items: center
         .banner
+          text-align: center
           display: flex
           flex-direction: column
           align-items: center

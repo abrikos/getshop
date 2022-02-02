@@ -4,6 +4,7 @@ import PhoneInput from "./PhoneInput";
 import PhoneAccepted from "./PhoneAccepted";
 import {useEffect, useState} from "react";
 import closeBtn from '../static/btn-close.svg'
+import Slider from "./Slider";
 
 export default function SecondScreen() {
     const dispatch = useDispatch();
@@ -129,13 +130,15 @@ export default function SecondScreen() {
             </div>
         </div>
         <div className="right">
-            <div className="wrapper">
+            <Slider/>
+            <div className="overlay">
                 <div id={getNavigationId(14)}
                      className="navigation"
                      onClick={() => phoneValidated ? dispatch(setPhoneValid(false)) : dispatch(setScreen('first'))}>
                     <img src={closeBtn} alt="Закрыть"/>
                 </div>
             </div>
+
         </div>
     </div>
 }
