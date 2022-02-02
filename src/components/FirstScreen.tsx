@@ -1,8 +1,7 @@
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState, setScreen, setStartTime} from "../store";
-import ReactPlayer, {YouTubeConfig} from "react-player/youtube";
-import {createRef, useState} from "react";
-import BaseReactPlayer, {BaseReactPlayerProps} from 'react-player/base';
+import ReactPlayer from "react-player/youtube";
+import React, {RefObject, useEffect, useState} from "react";
 import qr from '../static/qr.svg'
 
 export default function FirstScreen() {
@@ -12,11 +11,6 @@ export default function FirstScreen() {
     const startTime = useSelector((state: RootState) => {
         return state.startTime
     })
-    const ref = createRef<BaseReactPlayer<BaseReactPlayerProps>>()
-
-    const config: YouTubeConfig = {
-        playerVars: {start: startTime}
-    }
 
     function progress(progress: any) {
         setTime(progress.playedSeconds)
@@ -27,23 +21,24 @@ export default function FirstScreen() {
         dispatch(setStartTime(time));
     }
 
+    const playerRef: RefObject<any> = React.createRef();
 
+    useEffect(()=>{
+        playerRef.current.seekTo(startTime)
+    }, [startTime])
     return <div className="first-screen">
         <ReactPlayer
-            ref={ref}
-            key={startTime}
-            url='https://www.youtube.com/watch?v=M7FIvfx5J10'
-            //why sometimes no autoplay?
-            playing={play}
+            ref={playerRef}
+            url='https://www.youtube.com/watch/M7FIvfx5J10?enablejsapi=1&autoplay=1&muted=1@autopause=0'
+            playing={true}
+            muted={true}
             controls={false}
             width="100%"
             height="720px"
             onProgress={progress}
             loop={true}
-            //why after redraw time does not apply?
-            config={config}
         />
-        <div className="video-overlay" onClick={()=>setPlay(!play)}>
+        <div className="video-overlay" onClick={() => setPlay(!play)}>
             {time > 5 && <div className="banner bg-blue">
                 <div>
                     ИСПОЛНИТЕ МЕЧТУ ВАШЕГО МАЛЫША!

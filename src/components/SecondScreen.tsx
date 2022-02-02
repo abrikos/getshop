@@ -118,10 +118,14 @@ export default function SecondScreen() {
             window.removeEventListener("keyup", upHandler);
         };
     });
+    const startTime = useSelector((state: RootState) => {
+        return state.startTime
+    })
 
     return <div className="second-screen">
         <div className="left bg-blue">
             <div className="wrapper">
+                {startTime}
                 {!phoneValidated && (
                     <PhoneInput
                         addToPhone={addToPhone}
