@@ -3,7 +3,7 @@ import {configureStore, createSlice} from '@reduxjs/toolkit'
 const slice = createSlice({
     name: 'screens',
     initialState: {
-        screen: 'first',
+        screen: 'second',
         startTime: 0,
         phone: '',
         phoneValidated: false,

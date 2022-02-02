@@ -85,10 +85,9 @@ export default function SecondScreen() {
                 shift -= 3;
             }
         }
-        if (shift < 0) shift = 0;
+        if (shift <= 0) shift = 1;
         if (shift > 14) shift = 14;
 
-        console.log(shift)
         setNavigate(shift);
         const navs = document.getElementsByClassName('navigation');
         for (let i = 0; i < navs.length; i++) {
@@ -118,14 +117,10 @@ export default function SecondScreen() {
             window.removeEventListener("keyup", upHandler);
         };
     });
-    const startTime = useSelector((state: RootState) => {
-        return state.startTime
-    })
 
     return <div className="second-screen">
         <div className="left bg-blue">
             <div className="wrapper">
-                {startTime}
                 {!phoneValidated && (
                     <PhoneInput
                         addToPhone={addToPhone}
