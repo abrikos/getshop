@@ -151,13 +151,13 @@ export default function SecondScreen() {
         </div>
         <div className="right">
             {phoneValidated && <Carousel className="slider" ref={sliderRef} controls={false}>
-                <Carousel.Item>
-                    <div id="bg1" className="bg">&nbsp;</div>
-                </Carousel.Item>
-                <Carousel.Item>
+                <Carousel.Item interval={1000}>
                     <div id="bg2" className="bg">&nbsp;</div>
                 </Carousel.Item>
-                <Carousel.Item>
+                <Carousel.Item interval={1000}>
+                    <div id="bg1" className="bg">&nbsp;</div>
+                </Carousel.Item>
+                <Carousel.Item interval={1000}>
                     <div id="bg3" className="bg">&nbsp;</div>
                 </Carousel.Item>
             </Carousel>}
