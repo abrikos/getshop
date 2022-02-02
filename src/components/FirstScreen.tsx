@@ -8,6 +8,7 @@ export default function FirstScreen() {
     const dispatch = useDispatch();
     const [time, setTime] = useState(0);
     const [play, setPlay] = useState(true);
+    const [mute, setMute] = useState(true);
     const startTime = useSelector((state: RootState) => {
         return state.startTime
     })
@@ -23,22 +24,30 @@ export default function FirstScreen() {
 
     const playerRef: RefObject<any> = React.createRef();
 
-    useEffect(()=>{
+    useEffect(() => {
         playerRef.current.seekTo(startTime)
     }, [startTime])
     return <div className="first-screen">
         <ReactPlayer
             ref={playerRef}
             url='https://www.youtube.com/watch/M7FIvfx5J10?enablejsapi=1&autoplay=1&muted=1@autopause=0'
-            playing={true}
-            muted={true}
+            playing={play}
+            muted={mute}
             controls={false}
             width="100%"
             height="720px"
             onProgress={progress}
             loop={true}
         />
-        <div className="video-overlay" onClick={() => setPlay(!play)}>
+        <div
+            className="video-overlay"
+            onClick={() => setMute(!mute)}
+            onContextMenu={(e) => {
+                e.preventDefault();
+                setPlay(!play)
+            }}
+            title="Клик - звук вкл/выкл. Правый клик - видео стоп/старт."
+        >
             {time > 5 && <div className="banner bg-blue">
                 <div>
                     ИСПОЛНИТЕ МЕЧТУ ВАШЕГО МАЛЫША!
