@@ -1,45 +1,33 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCheck} from "@fortawesome/free-solid-svg-icons";
-import {useEffect, useState} from "react";
-import {useDispatch} from "react-redux";
-import {setPhoneNumber} from "../store";
+import {useDispatch, useSelector} from "react-redux";
+import {RootState, setAgreement, setPhoneValid} from "../store";
 
-export default function PhoneInput() {
-    const [phone, setPhone] = useState('');
-    const [agreement, setAgreement] = useState(false);
+interface FuncProps {
+    addToPhone: (values: number | string) => void;
+    removeFromPhone: () => void;
+    getNavigationId: (v: number) => string;
+    validatePhone: () => boolean;
+}
+
+export default function PhoneInput(props: FuncProps) {
+    const {addToPhone, removeFromPhone, getNavigationId, validatePhone} = props;
+    const phone = useSelector((state: RootState) => {
+        return state.phone
+    });
+    const agreement = useSelector((state: RootState) => {
+        return state.agreement
+    });
+
     const numbers: number[] = Array.apply(null, Array(9)).map((x, i) => i + 1);
     const dispatch = useDispatch();
-    // @ts-ignore
-    const upHandler = ({key}) => {
-        if (key.match(/[0-9]/)) addToPhone(key);
-        if(key==='Backspace') removeFromPhone();
-    };
-    useEffect(() => {
-        window.addEventListener("keyup", upHandler);
-        return () => {
-            window.removeEventListener("keyup", upHandler);
-        };
-    }, []);
 
     function formatPhone() {
         return `+7 (${phoneDigit(0)}${phoneDigit(1)}${phoneDigit(2)})${phoneDigit(3)}${phoneDigit(4)}${phoneDigit(5)}-${phoneDigit(6)}${phoneDigit(7)}-${phoneDigit(8)}${phoneDigit(9)}`;
     }
 
-    function validate() {
-        return agreement && phone.match(/[0-9]{10}/);
-    }
-
     function phoneDigit(i: number) {
         return phone.length > i ? phone[i] : '_';
-    }
-
-    function addToPhone(n: number | string) {
-        if (phone.length > 9) return;
-        setPhone(currentState => `${currentState}${n}`);
-    }
-
-    function removeFromPhone() {
-        setPhone(currentState => currentState.slice(0, -1));
     }
 
     return <div className="phone-input-container">
@@ -52,13 +40,17 @@ export default function PhoneInput() {
             и с Вами свяжется наш менеждер для дальнейшей консультации
         </small>
         <div className="digits">
-            {numbers.map(n => <div key={n} className="btn" onClick={() => addToPhone(n)}>{n}</div>)}
-            <div className="btn" onClick={removeFromPhone}>Стереть</div>
-            <div className="btn" onClick={() => addToPhone(0)}>0</div>
+            {numbers.map((n) => <div key={n} className="btn navigation" onClick={() => addToPhone(n)}
+                                     id={getNavigationId(n)}>
+                {n}
+            </div>)}
+            <div className="btn navigation" onClick={removeFromPhone} id={getNavigationId(10)}>Стереть</div>
+            <div className="btn navigation" onClick={() => addToPhone(0)} id={getNavigationId(11)}>0</div>
         </div>
         <div className="agreement">
             <div>
-                <div className="check-box" onClick={() => setAgreement(!agreement)}>
+                <div className="check-box navigation" onClick={() => dispatch(setAgreement(!agreement))}
+                     id={getNavigationId(12)}>
                     {agreement && <FontAwesomeIcon icon={faCheck}/>}
                 </div>
             </div>
@@ -68,7 +60,8 @@ export default function PhoneInput() {
                 </div>
             </div>
         </div>
-        <div className={`accept ${validate() && 'active'}`} onClick={() =>validate() &&  dispatch(setPhoneNumber(phone))}>
+        <div className={`accept navigation ${validatePhone() && 'active'}`}
+             onClick={() => validatePhone() && dispatch(setPhoneValid(true))} id={getNavigationId(13)}>
             Подтвердить номер
         </div>
     </div>
