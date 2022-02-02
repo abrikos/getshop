@@ -31,21 +31,21 @@ export default function PhoneInput(props: FuncProps) {
     }
 
     return <div className="phone-input-container">
-        Введите ваш номер
-        мобильного телефона
+        <h3>Введите ваш номер
+            мобильного телефона</h3>
         <div className="phone-input">
             {formatPhone()}
         </div>
-        <small>
+        <div className="text-under-phone">
             и с Вами свяжется наш менеждер для дальнейшей консультации
-        </small>
+        </div>
         <div className="digits">
-            {numbers.map((n) => <div key={n} className="btn navigation" onClick={() => addToPhone(n)}
+            {numbers.map((n) => <div key={n} className="btn navigation digit" onClick={() => addToPhone(n)}
                                      id={getNavigationId(n)}>
                 {n}
             </div>)}
             <div className="btn navigation" onClick={removeFromPhone} id={getNavigationId(10)}>Стереть</div>
-            <div className="btn navigation" onClick={() => addToPhone(0)} id={getNavigationId(11)}>0</div>
+            <div className="btn navigation digit" onClick={() => addToPhone(0)} id={getNavigationId(11)}>0</div>
         </div>
         <div className="agreement">
             <div>

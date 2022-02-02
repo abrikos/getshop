@@ -2,10 +2,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import {RootState, setAgreement, setPhoneNumber, setPhoneValid, setScreen} from "../store";
 import PhoneInput from "./PhoneInput";
 import PhoneAccepted from "./PhoneAccepted";
-import {faWindowClose} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useEffect, useState} from "react";
-
+import closeBtn from '../static/btn-close.svg'
 
 export default function SecondScreen() {
     const dispatch = useDispatch();
@@ -118,23 +116,26 @@ export default function SecondScreen() {
 
     return <div className="second-screen">
         <div className="left bg-blue">
-            {navigate}
-            {!phoneValidated && (
-                <PhoneInput
-                    addToPhone={addToPhone}
-                    removeFromPhone={removeFromPhone}
-                    getNavigationId={getNavigationId}
-                    validatePhone={validatePhone}
-                />
-            )}
-            {phoneValidated && <PhoneAccepted/>}
+            <div className="wrapper">
+                {!phoneValidated && (
+                    <PhoneInput
+                        addToPhone={addToPhone}
+                        removeFromPhone={removeFromPhone}
+                        getNavigationId={getNavigationId}
+                        validatePhone={validatePhone}
+                    />
+                )}
+                {phoneValidated && <PhoneAccepted/>}
+            </div>
         </div>
         <div className="right">
-            <button id={getNavigationId(14)}
-                    className="navigation"
-                    onClick={() => phoneValidated ? dispatch(setPhoneValid(false)) : dispatch(setScreen('first'))}>
-                <FontAwesomeIcon icon={faWindowClose}/>
-            </button>
+            <div className="wrapper">
+                <div id={getNavigationId(14)}
+                     className="navigation"
+                     onClick={() => phoneValidated ? dispatch(setPhoneValid(false)) : dispatch(setScreen('first'))}>
+                    <img src={closeBtn} alt="Закрыть"/>
+                </div>
+            </div>
         </div>
     </div>
 }

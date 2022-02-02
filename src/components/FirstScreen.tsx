@@ -23,7 +23,7 @@ export default function FirstScreen() {
     }
 
     function goToPhoneScreen() {
-        dispatch(setScreen('phone'));
+        dispatch(setScreen('second'));
         dispatch(setStartTime(time));
     }
 
