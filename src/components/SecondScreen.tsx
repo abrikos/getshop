@@ -24,8 +24,16 @@ export default function SecondScreen() {
     });
     const sliderRef: RefObject<any> = React.createRef();
 
+    function keyToId(key: string) {
+        return parseInt(key === '0' ? '11' : key === 'Backspace' ? '10' : key)
+    }
+
     // @ts-ignore
     const upHandler = ({key}) => {
+        const selected = document.getElementById(getNavigationId(keyToId(key)));
+        if (selected)
+            selected.classList.remove('hovered')
+
         if (key.match(/[0-9]/)) addToPhone(key);
         if (key === 'Backspace') removeFromPhone();
         if (key === 'Enter' && navigate > 0 && navigate < 10) addToPhone(navigate);
@@ -111,9 +119,18 @@ export default function SecondScreen() {
         dispatch(setPhoneNumber(phone.slice(0, -1)))
     }
 
+    // @ts-ignore
+    function downHandler({key}) {
+        const selected = document.getElementById(getNavigationId(keyToId(key)));
+        if (selected)
+            selected.classList.add('hovered')
+    }
+
     useEffect(() => {
+        window.addEventListener("keydown", downHandler);
         window.addEventListener("keyup", upHandler);
         return () => {
+            window.removeEventListener("keydown", downHandler);
             window.removeEventListener("keyup", upHandler);
         };
     });
