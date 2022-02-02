@@ -29,15 +29,14 @@ body
       .navigation
         cursor: pointer
       .navigation-selected
-        border-color: red !important
-        box-shadow: inset 0 0 9px 9px rgba(0, 0, 255, .2)
+        border-color: green !important
+        background: silver !important
+        // box-shadow: inset 0 0 9px 9px rgba(0, 0, 255, .2)
       .left
         width: 380px
         // padding: 4px
-        .phone-accept-container
-          height: 100%
-          display: flex
-          align-items: center
+        display: flex
+        align-items: center
         .phone-input-container
           .accept
             text-transform: uppercase
@@ -67,6 +66,7 @@ body
             font-size: 32px
             margin: 20px 0
             font-weight: bolder
+            font-stretch: ultra-condensed
           .text-under-phone
             font-size: .9em
             margin: 10px 0 30px
@@ -89,17 +89,38 @@ body
               color: white
       .right
         width: 900px
+        position: relative
+        background: url(../static/bg1.png) no-repeat center
         .slider
-          img
-            height: 720px
+          .bg
+            height: $height
+          #bg1
+            background: url(../static/bg1.png) no-repeat center
+          #bg2
+            background: url(../static/bg2.png) no-repeat center
+          #bg3
+            background: url(../static/bg3.png) no-repeat center
         .overlay
           position: absolute
+          margin: 40px
           top: 0
+          left: 0
+          bottom: 0
+          right: 0
+          display: flex
+          flex-direction: column
+          justify-content: space-between
           .navigation
-            top: 20px
-            position: relative
+            float: right
+            background: white
+            width: 88px
+            border: 2px solid black
+          .carousel-controls
+            text-align: center
+            img
+              cursor: pointer
       .wrapper
-        margin: 40px
+        margin: 10px 40px
 
     .first-screen
       .video-overlay

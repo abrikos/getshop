@@ -23,7 +23,7 @@ export default function PhoneInput(props: FuncProps) {
     const dispatch = useDispatch();
 
     function formatPhone() {
-        return `+7 (${phoneDigit(0)}${phoneDigit(1)}${phoneDigit(2)})${phoneDigit(3)}${phoneDigit(4)}${phoneDigit(5)}-${phoneDigit(6)}${phoneDigit(7)}-${phoneDigit(8)}${phoneDigit(9)}`;
+        return `+7(${phoneDigit(0)}${phoneDigit(1)}${phoneDigit(2)})${phoneDigit(3)}${phoneDigit(4)}${phoneDigit(5)}-${phoneDigit(6)}${phoneDigit(7)}-${phoneDigit(8)}${phoneDigit(9)}`;
     }
 
     function phoneDigit(i: number) {

@@ -2,9 +2,12 @@ import {useDispatch, useSelector} from 'react-redux';
 import {RootState, setAgreement, setPhoneNumber, setPhoneValid, setScreen} from "../store";
 import PhoneInput from "./PhoneInput";
 import PhoneAccepted from "./PhoneAccepted";
-import {useEffect, useState} from "react";
+import React, {RefObject, useEffect, useState} from "react";
 import closeBtn from '../static/btn-close.svg'
-import Slider from "./Slider";
+import {Carousel} from "react-bootstrap";
+import prev from "../static/prev.svg";
+import next from "../static/next.svg";
+import qr from '../static/qr.svg'
 
 export default function SecondScreen() {
     const dispatch = useDispatch();
@@ -19,6 +22,7 @@ export default function SecondScreen() {
     const phone = useSelector((state: RootState) => {
         return state.phone
     });
+    const sliderRef: RefObject<any> = React.createRef();
 
     // @ts-ignore
     const upHandler = ({key}) => {
@@ -130,13 +134,51 @@ export default function SecondScreen() {
             </div>
         </div>
         <div className="right">
-            <Slider/>
+            {phoneValidated && <Carousel className="slider" ref={sliderRef} controls={false}>
+                <Carousel.Item>
+                    <div id="bg1" className="bg">&nbsp;</div>
+                </Carousel.Item>
+                <Carousel.Item>
+                    <div id="bg2" className="bg">&nbsp;</div>
+                </Carousel.Item>
+                <Carousel.Item>
+                    <div id="bg3" className="bg">&nbsp;</div>
+                </Carousel.Item>
+            </Carousel>}
             <div className="overlay">
-                <div id={getNavigationId(14)}
-                     className="navigation"
-                     onClick={() => phoneValidated ? dispatch(setPhoneValid(false)) : dispatch(setScreen('first'))}>
-                    <img src={closeBtn} alt="Закрыть"/>
+                <div/>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-10 flex align-bottom" style={{
+                            color: 'white',
+                            textAlign: 'right',
+                            textShadow: '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black'
+                        }}>
+                            Сканируйте <br/>QR ДЛЯ <br/>ПОЛУЧЕНИЯ <br/>ДОПОЛНИТЕЛЬНОЙ <br/>ИНФОРМАЦИИ
+                        </div>
+                        <div className="col-2">
+                            <img src={qr} alt="qr"/>
+                        </div>
+                    </div>
                 </div>
+            </div>
+            <div className="overlay">
+                <div>
+                    <div
+                        onClick={() => phoneValidated ? dispatch(setPhoneValid(false)) : dispatch(setScreen('first'))}
+                        id={getNavigationId(14)}
+                        className="navigation"
+                    >
+                        <img
+                            src={closeBtn} alt="Закрыть"
+                        />
+                    </div>
+
+                </div>
+                {phoneValidated && <div className="carousel-controls">
+                    <img src={prev} alt="prev slide" title="Предыдущий слайд" onClick={() => sliderRef.current.prev()}/>
+                    <img src={next} alt="next slide" title="Следующий слайд" onClick={() => sliderRef.current.next()}/>
+                </div>}
             </div>
 
         </div>
