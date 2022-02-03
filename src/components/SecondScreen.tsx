@@ -8,6 +8,7 @@ import {Carousel} from "react-bootstrap";
 import prev from "../static/prev.svg";
 import next from "../static/next.svg";
 import qr from '../static/qr.svg'
+import '../assets/second-screen.sass';
 
 export default function SecondScreen() {
     const dispatch = useDispatch();

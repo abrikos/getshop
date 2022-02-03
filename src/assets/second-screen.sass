@@ -1,0 +1,103 @@
+@import "./common"
+.second-screen
+  display: flex
+  height: 100%
+  width: $width
+  .navigation
+    cursor: pointer
+  .navigation-selected
+    border-color: green !important
+    background: silver !important
+  // box-shadow: inset 0 0 9px 9px rgba(0, 0, 255, .2)
+  .left
+    width: 380px
+    // padding: 4px
+    display: flex
+    align-items: center
+    .phone-input-container
+      .accept
+        text-transform: uppercase
+        border: 1px solid black
+        padding: 20px
+        &.active
+          cursor: pointer
+          background: black
+          color: white
+      .agreement
+        display: flex
+        justify-content: space-around
+        div
+          margin: 10px
+          display: flex
+          align-items: center
+          .agree-text
+            text-align: left
+          .check-box
+            cursor: pointer
+            display: flex
+            justify-content: center
+            width: 40px
+            height: 40px
+            border: 1px solid black
+      .phone-input
+        font-size: 32px
+        margin: 20px 0
+        font-weight: bolder
+        font-stretch: ultra-condensed
+      .text-under-phone
+        font-size: .9em
+        margin: 10px 0 30px
+      .digits
+        display: grid
+        column-gap: 10px
+        row-gap: 10px
+        grid-template-columns: [first] auto [line2] auto [line3] auto [end]
+        grid-template-rows: 52px 52px 52px 52px
+        div
+          cursor: pointer
+          border: 2px solid black
+          display: flex
+          align-items: center
+          justify-content: center
+        div:nth-child(10)
+          grid-column: span 2
+        div:hover
+          background: black
+          color: white
+        .hovered
+          background: black
+          color: white
+  .right
+    width: 900px
+    position: relative
+    background: url(../static/bg1.png) no-repeat center
+    .slider
+      .bg
+        height: $height
+      #bg1
+        background: url(../static/bg1.png) no-repeat center
+      #bg2
+        background: url(../static/bg2.png) no-repeat center
+      #bg3
+        background: url(../static/bg3.png) no-repeat center
+    .overlay
+      position: absolute
+      margin: 40px
+      top: 0
+      left: 0
+      bottom: 0
+      right: 0
+      display: flex
+      flex-direction: column
+      justify-content: space-between
+      .navigation
+        float: right
+        background: white
+        width: 88px
+        border: 2px solid black
+      .carousel-controls
+        text-align: center
+        img
+          cursor: pointer
+  .wrapper
+    margin: 10px 40px

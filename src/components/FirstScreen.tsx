@@ -2,7 +2,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import {RootState, setScreen, setStartTime} from "../store";
 import ReactPlayer from "react-player/youtube";
 import React, {RefObject, useEffect, useState} from "react";
-import qr from '../static/qr.svg'
+import qr from '../static/qr.svg';
+import '../assets/first-screen.sass';
 
 export default function FirstScreen() {
     const dispatch = useDispatch();
